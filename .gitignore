@@ -1,0 +1,9 @@
+.idea/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.cache/
+
+# selenium logs
+geckodriver.log
+ghostdriver.log

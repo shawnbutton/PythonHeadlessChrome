@@ -28,11 +28,16 @@ class TestDownload:
         clone_box = driver.find_element_by_xpath('//*[@id="main-col"]/div/div/div[8]/p[1]/a/img')
         clone_box.click()
 
-        # wait for download
-        sleep(10)
-
+        self.wait_until_file_exists(expected_download, 30)
         driver.close()
 
         assert (path.isfile(expected_download))
 
         print("done")
+
+    def wait_until_file_exists(self, actual_file, wait_time_in_seconds=5):
+        waits = 0
+        while not path.isfile(actual_file) and waits < wait_time_in_seconds:
+            print("sleeping...." + str(waits))
+            sleep(.5)  # make sure file completes downloading
+            waits += .5
